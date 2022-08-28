@@ -86,9 +86,11 @@ Route::group(['middleware' => ['auth']] , function () {
 
     // reports routes //
     Route::get('/report', [App\Http\Controllers\ReportController::class, 'index']);
-    Route::get('/viewReport/{s}/{e}', [App\Http\Controllers\ReportController::class, 'saleReport']);
+    Route::get('/saleReport/{s}/{e}', [App\Http\Controllers\ReportController::class, 'saleReport']);
     Route::get('/generate_order_tags', [App\Http\Controllers\ReportController::class, 'generate_order_tags']);
     Route::get('/itemReport/{s}/{e}', [App\Http\Controllers\ReportController::class, 'itemReport']);
+    Route::get('/customerReport/{s}/{e}', [App\Http\Controllers\ReportController::class, 'itemReport']);
+    Route::get('/riderOrderReport/{s}/{e}', [App\Http\Controllers\ReportController::class, 'itemReport']);
    
 
     

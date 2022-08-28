@@ -178,23 +178,24 @@ Soyuz - Form Wizards
     $(document).on("click","#generateReport",function(){
 
         var sReportName = $(this).attr("report")
-        alert(sReportName)
         
 
-        // $sdate=$("#startDate").val();
-        // $edate=$("#endDate").val();
+        $sdate=$("#startDate").val();
+        $edate=$("#endDate").val();
 
-        // var ReqReport = "";
-        // if(sReportName == "generateItemReport"){
-        //     ReqReport = "itemReport"
-        // }
-        // elseif(sReportName == "generateItemReport"){
-        //     ReqReport = "viewReport"
-        // }elseif(sReportName == "generateRiderOrderReport"){
-        //      ReqReport = "generateRiderOrderReport"
-        // }   
-
-        // window.open(ReqReport+"/"+$sdate+"/"+$edate, "myWindow", "width=600,height=800");
+        var ReqReport = "";
+        if(sReportName == "generateSaleReport"){
+            ReqReport = "saleReport"
+        }
+        else if(sReportName == "generateItemReport"){
+            ReqReport = "itemReport"
+        }else if(sReportName == "generateCustomerReport"){
+             ReqReport = "customerReport"
+        } 
+        else if(sReportName == "generateRiderOrderReport"){
+             ReqReport = "riderOrderReport"
+        }   
+        window.open(ReqReport+"/"+$sdate+"/"+$edate, "myWindow", "width=600,height=800");
     })
     $(document).on("click","#generateTag",function(){
         window.open("generate_order_tags", "myWindow", "");

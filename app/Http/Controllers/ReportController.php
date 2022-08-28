@@ -64,7 +64,7 @@ class ReportController extends Controller
         
         return view('report.view_report',$aData);  
      }
-     function itemReport($s,$e){
+    function itemReport($s,$e){
 
         $dStartDate = $s;
         $dEndDate   = $e;
