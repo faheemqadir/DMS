@@ -32,7 +32,7 @@ class ApiController extends Controller
             $iOrderLimit = Setting::where('setting_name','credit_limit')->pluck('setting_value');
 
             if( $iWalletAmount  ){
-                $response=['status'=>1,"msg"=>"data found","data"=> ["WalletAmount" => $iWalletAmount,"OrderLimit"=>$iOrderLimit]];
+                $response=['status'=>1,"msg"=>"data found","data"=> ["WalletAmount" => $iWalletAmount[0],"OrderLimit"=>$iOrderLimit[0] ]];
             }else{
                 $response=['status'=>2,"msg"=>"data not found"];
             }
@@ -372,6 +372,7 @@ class ApiController extends Controller
             $iCustomer_id = $aOrder->customer_id;
             $iOrderTOtalPrice = $aOrder->order_total_price;
             $dCustomerWallet =   customer::where('id',$iCustomer_id)->first()->customer_wallet;
+            $iCollectionLimit = Setting::where('setting_name','rider_collection_limit')->pluck('setting_value');
             
             $dAmountCollect = $iOrderTOtalPrice;
             if($dCustomerWallet > 0){
@@ -387,7 +388,7 @@ class ApiController extends Controller
                 $dAmountCollect = $iOrderTOtalPrice;
             }
 
-            $aResult=['status'=>1,"msg"=>"Order details","AmountCollect"=>$dAmountCollect];
+            $aResult=['status'=>1,"msg"=>"Order details","AmountCollect"=>$dAmountCollect,"CollectionLimit"=>$iCollectionLimit[0]];
         }else{
             $aResult=['status'=>2,"msg"=>"Invalid Order"];
         }
