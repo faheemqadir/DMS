@@ -28,8 +28,10 @@ class ApiController extends Controller
         if($iCustomerd){
 
             $iWalletAmount = customer::where('id',$iCustomerd)->pluck('customer_wallet');
+            $iOrderLimit = Settings::where('id',1)->pluck('credit_limit');
+
             if( $iWalletAmount  ){
-                $response=['status'=>1,"msg"=>"data found","data"=> ["WalletAmount" => $iWalletAmount]];
+                $response=['status'=>1,"msg"=>"data found","data"=> ["WalletAmount" => $iWalletAmount,"OrderLimit"=>$iOrderLimit]];
             }else{
                 $response=['status'=>2,"msg"=>"data not found"];
             }
