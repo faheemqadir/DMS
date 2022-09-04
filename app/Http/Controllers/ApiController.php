@@ -418,7 +418,6 @@ class ApiController extends Controller
             $iOrderStatus            = $aOrder->order_status;
 
             $dCustomerWallet =   customer::where('id',$iCustomer_id)->first()->customer_wallet;
-            
             if($iOrderStatus == 1){
 
                 if($sOTP_Code){
@@ -433,19 +432,21 @@ class ApiController extends Controller
                         $sMsg = "Order failed to complete.contact administrator";
                         if($iPaymentAmount > 0){
                             $iCollectedAmt = 0;
-
-                           if( ($iPaymentAmount+$dCustomerWallet) >=  $iOrderTOtalPrice){
+                           
+                            if( ($iPaymentAmount+$dCustomerWallet) >=  $iOrderTOtalPrice){
                                
                                 if( ($iPaymentAmount+$dCustomerWallet) == $iOrderTOtalPrice ){
-                                    $iRemainingAmount = 0;
+                                    $iRemainingAmount = $dCustomerWallet = 0;
                                     $iCollectedAmt = ($iPaymentAmount+$dCustomerWallet);
                                 }
                                 else if( $iPaymentAmount > $iOrderTOtalPrice ){
                                     $iRemainingAmount = (($iPaymentAmount - $iOrderTOtalPrice));
                                     $iCollectedAmt = ($iPaymentAmount - $iRemainingAmount);
+                                    
+                                    $dCustomerWallet += $iRemainingAmount; 
                                 }
                                 if($iCollectedAmt > 0){
-                                    $this->update_customer_wallet($iCustomer_id,$iRemainingAmount);
+                                    $this->update_customer_wallet($iCustomer_id,$dCustomerWallet);
                                     $iResult = order::where('id',$iOrderId)->update([ 'order_collected_amount'=> $iCollectedAmt,'order_status'=> 2]);    
                                 }    
                             }else{
