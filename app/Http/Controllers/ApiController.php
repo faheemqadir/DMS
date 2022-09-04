@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Customer;
+use App\Models\Setting;
 use DB;
 class ApiController extends Controller
 {
@@ -28,7 +29,7 @@ class ApiController extends Controller
         if($iCustomerd){
 
             $iWalletAmount = customer::where('id',$iCustomerd)->pluck('customer_wallet');
-            $iOrderLimit = Settings::where('id',1)->pluck('credit_limit');
+            $iOrderLimit = Setting::where('setting_name','credit_limit')->pluck('setting_value');
 
             if( $iWalletAmount  ){
                 $response=['status'=>1,"msg"=>"data found","data"=> ["WalletAmount" => $iWalletAmount,"OrderLimit"=>$iOrderLimit]];
