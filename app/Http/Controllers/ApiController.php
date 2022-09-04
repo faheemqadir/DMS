@@ -231,7 +231,7 @@ class ApiController extends Controller
             INNER JOIN users AS U ON U.id = O.customer_id
             INNER JOIN shops AS S ON S.id = O.shop_id
             WHERE C.id="'.$iCustomerId.'"
-            Order By O.order_status
+            Order By O.order_status DESC
         ');
         //WHERE C.id="'.$iCustId.'"
         foreach($aData as $ind => $val){
