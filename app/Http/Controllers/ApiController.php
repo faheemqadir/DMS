@@ -317,7 +317,7 @@ class ApiController extends Controller
             INNER JOIN users AS U ON U.id = O.rider_id
             INNER JOIN shops AS S ON S.id = O.shop_id
             WHERE U.id="'.$iRiderId.'"
-            Order By id DESC
+            Order By O.order_status DESC
         ');
         $aResult = [];
 
