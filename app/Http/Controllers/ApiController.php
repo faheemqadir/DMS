@@ -339,7 +339,7 @@ class ApiController extends Controller
             SELECT
                 I.productId,
                 I.productName,
-                OI.productPrice,
+                I.productRetailRaterice AS 'productRetailRatePrice',
                 OI.productQuantity,
                 I.productScale,
                 I.ProductPurchasePrice
