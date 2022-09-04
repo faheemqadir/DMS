@@ -45,6 +45,12 @@ Soyuz - Form Wizards
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label class="col-lg-3" for="">Collection Limit</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" name="rider_collection_limit" value="{{$settings[3]['setting_value']}}" id="rider_collection_limit">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-lg-3" for="">Order Start Time</label>
                     <div class="col-lg-9">
                         <input type="time" class="form-control" name="order_start_time" value="{{$settings[1]['setting_value']}}" id="order_start_time">

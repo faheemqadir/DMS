@@ -16,9 +16,9 @@ class SettingController extends Controller
     function save_setting(Request $request){
 
         
-        //Setting::where('credit_limit', $request->get('credit_limit'))->get();
-
+        
         Setting::where('setting_name','credit_limit')->update([ 'setting_value'=> $request->get('credit_limit')]);
+        Setting::where('setting_name','rider_collection_limit')->update([ 'setting_value'=> $request->get('rider_collection_limit')]);
         Setting::where('setting_name','order_start_time')->update([ 'setting_value'=> $request->get('order_start_time')]);
         Setting::where('setting_name','order_end_time')->update([ 'setting_value'=> $request->get('order_end_time')]);
 
